@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Telerik Backend</title>
+    <!-- online lib-->
+    <script src="https://bs-static.cdn.telerik.com/1.5.4/everlive.all.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="app/dataBase.js"></script>
+   
+    <!-- <script src="bower_components/system.js/dist/system.js"></script>
+    <script>
+    System.config({
+        transpiler: "babel",
+        babelOptions: {
+            optional: [
+                "runtime"
+            ]
+        },
+        map: {
+            babel: 'node_modules/babel-core/browser.js'
+        }
+    });
+    System.import("app/dataBase.js");
+    </script> -->
+</head>
+
+<body>
+  
+    <div id="login-register"></div>
+    <script>
+    var labelUsername = $('<label for="tb-user">').html('Username:');
+    $('<input type="text" id="tb-user">').appendTo(labelUsername);
+
+    var labelPassword = $('<label for="tb-pass">').html('Password:');
+    $('<input type="password" id="tb-pass">').appendTo(labelPassword);
+
+    var buttonLogin = $('<button id="btn-login">').html('Login');
+    var buttonRegister = $('<button id="btn-register">').html('Register');
+    var buttonLogout = $('<button id="btn-logout">').html('Logout');
+    var buttonUpdate = $('<button id="btn-update">').html('Update');
+
+    $('#login-register').append(labelUsername);
+    $('#login-register').append(labelPassword);
+    $('#login-register').append(buttonLogin);
+    $('#login-register').append(buttonRegister);
+    $('#login-register').append(buttonLogout);
+    $('#login-register').append(buttonUpdate);
+
+    $('#btn-register').on('click', function() {
+        var username = $('#tb-user').val(),
+            password = $('#tb-pass').val(),
+            attr = {};
+        dataBase.register(username, password, attr);
+
+    });
+
+    $('#btn-login').on('click', function() {
+        var username = $('#tb-user').val(),
+            password = $('#tb-pass').val();
+        dataBase.login(username, password);
+
+    });
+
+    $('#btn-logout').on('click', function() {
+        dataBase.logout();
+    });
+
+    $('#btn-update').on('click', function() {
+        dataBase.getCurrentUser();
+        dataBase.getAllPlayersSortedByTotalTimeLineScore();
+        dataBase.update(5, 2, 13, 23, 22, 19);
+    });
+    </script>
+</body>
+
+</html>
