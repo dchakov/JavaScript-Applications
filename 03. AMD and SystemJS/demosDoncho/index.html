@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <h1>Hello!!</h1>
+    <script src="bower_components/system.js/dist/system.js"></script>
+    <script>
+    System.config({
+        transpiler: "babel",
+        babelOptions: {
+            optional: [
+                "runtime"
+            ]
+        },
+        map: {
+            babel: 'node_modules/babel-core/browser.js'
+        }
+    });
+
+    System.import("app/app.js")
+        .then(function(app) {
+            var $list = app.render(['one', 2, 3, 4]);
+            $list.appendTo(document.body);
+        });
+    </script>
+</body>
+
+</html>
